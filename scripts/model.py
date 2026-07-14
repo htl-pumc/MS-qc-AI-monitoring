@@ -123,10 +123,16 @@ def train_vae_mlp(
     device: torch.device,
     config: TrainConfig,
     log_prefix: str = "",
+    reset_seed: bool = True,
 ) -> tuple[VAE, ClassifierMLP, np.ndarray]:
-    """Train a VAE on good samples and an MLP on all latent representations."""
+    """Train a VAE on good samples and an MLP on all latent representations.
 
-    set_seed(config.seed)
+    Set ``reset_seed`` to false when the caller manages one continuous random
+    number stream across multiple training runs.
+    """
+
+    if reset_seed:
+        set_seed(config.seed)
     x = np.asarray(x, dtype=np.float32)
     y = np.asarray(y, dtype=np.int64)
     good_x = torch.tensor(x[y == 0], dtype=torch.float32, device=device)

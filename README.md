@@ -78,6 +78,14 @@ The source tables are also available as:
 - `results/summary_metrics.csv`
 - `results/cv_metrics.csv`
 
+### Re-run cross-validation
+
+The evaluation command initializes the random number generator once before
+cross-validation and preserves one continuous random number stream across all
+folds, matching the reported analysis. Use `--seed 42` for QE-Plus and
+`--seed 100` for the other six instruments. The stratified fold split uses
+`--split-seed 42` for every instrument.
+
 ### Apply a trained model
 
 Download the model and processed example data from the archive listed in [models/README.md](models/README.md), then run:

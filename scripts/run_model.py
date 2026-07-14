@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-from dataclasses import replace
 from pathlib import Path
 
 import numpy as np
@@ -26,6 +25,7 @@ from model import (
     load_checkpoint,
     predict_scores,
     save_checkpoint,
+    set_seed,
     train_vae_mlp,
 )
 
@@ -155,6 +155,10 @@ def evaluate_command(args: argparse.Namespace) -> None:
     x = features.to_numpy(dtype=np.float32)
     base_config = config_from_args(args)
     device = select_device(args.device)
+
+    # The reported analysis initializes one random number stream before
+    # cross-validation and allows it to advance continuously across folds.
+    set_seed(base_config.seed)
     splitter = StratifiedKFold(
         n_splits=args.folds,
         shuffle=True,
@@ -164,13 +168,13 @@ def evaluate_command(args: argparse.Namespace) -> None:
     prediction_frames: list[pd.DataFrame] = []
 
     for fold, (train_index, test_index) in enumerate(splitter.split(x, labels), start=1):
-        fold_config = replace(base_config, seed=base_config.seed + fold - 1)
         vae, mlp, _ = train_vae_mlp(
             x[train_index],
             labels[train_index],
             device,
-            fold_config,
+            base_config,
             log_prefix=f"[{args.instrument}:fold-{fold}]",
+            reset_seed=False,
         )
         scores = predict_scores(vae, mlp, x[test_index], device)
 
