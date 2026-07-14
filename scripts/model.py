@@ -125,11 +125,7 @@ def train_vae_mlp(
     log_prefix: str = "",
     reset_seed: bool = True,
 ) -> tuple[VAE, ClassifierMLP, np.ndarray]:
-    """Train a VAE on good samples and an MLP on all latent representations.
-
-    Set ``reset_seed`` to false when the caller manages one continuous random
-    number stream across multiple training runs.
-    """
+    """Train a VAE on good samples and an MLP on all latent representations."""
 
     if reset_seed:
         set_seed(config.seed)

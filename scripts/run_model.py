@@ -156,8 +156,6 @@ def evaluate_command(args: argparse.Namespace) -> None:
     base_config = config_from_args(args)
     device = select_device(args.device)
 
-    # The reported analysis initializes one random number stream before
-    # cross-validation and allows it to advance continuously across folds.
     set_seed(base_config.seed)
     splitter = StratifiedKFold(
         n_splits=args.folds,

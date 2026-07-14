@@ -1,0 +1,8 @@
+instrument,quantification,preprocessing_profile,feature_file,label_file,folds,split_seed,training_seed,latent_dim,vae_epochs,mlp_epochs,batch_size,vae_learning_rate,mlp_learning_rate
+fusion2,DDA,dda_missingness_v1,fusion2_missingness_features.csv.gz,sample_labels.csv,5,42,100,8,200,200,16,0.001,0.001
+fusion3,DDA,dda_missingness_v1,fusion3_missingness_features.csv.gz,sample_labels.csv,5,42,100,8,200,200,16,0.001,0.001
+lumos1,DDA,dda_missingness_v1,lumos1_missingness_features.csv.gz,sample_labels.csv,5,42,100,8,200,200,16,0.001,0.001
+qe_hf3,DDA,dda_missingness_v1,qe_hf3_missingness_features.csv.gz,sample_labels.csv,5,42,100,8,200,200,16,0.001,0.001
+qe_hf4,DDA,dda_missingness_v1,qe_hf4_missingness_features.csv.gz,sample_labels.csv,5,42,100,8,200,200,16,0.001,0.001
+qe_plus,DDA,dda_missingness_v1,qe_plus_missingness_features.csv.gz,sample_labels.csv,5,42,42,8,200,200,16,0.001,0.001
+m3,DIA,dia_missingness_v1,m3_missingness_features.csv.gz,sample_labels.csv,5,42,100,8,200,200,16,0.001,0.001

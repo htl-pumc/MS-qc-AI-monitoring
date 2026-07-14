@@ -43,6 +43,7 @@ scripts/
   preprocess_dia.R       DIA preprocessing
   model.py               Shared VAE and MLP implementation
   run_model.py           Training, evaluation, and prediction CLI
+config/reported_cv.csv   Settings for the reported cross-validation analyses
 notebooks/               Executed result notebooks
 results/                 Reported metrics and figures
 data/sample_labels.csv   Sample-level labels used in the analysis
@@ -80,11 +81,9 @@ The source tables are also available as:
 
 ### Re-run cross-validation
 
-The evaluation command initializes the random number generator once before
-cross-validation and preserves one continuous random number stream across all
-folds, matching the reported analysis. Use `--seed 42` for QE-Plus and
-`--seed 100` for the other six instruments. The stratified fold split uses
-`--split-seed 42` for every instrument.
+The exact per-instrument settings used to generate the reported results are
+provided in [`config/reported_cv.csv`](config/reported_cv.csv). Use these
+settings with the `evaluate` command in `scripts/run_model.py`.
 
 ### Apply a trained model
 
