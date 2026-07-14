@@ -1,0 +1,18 @@
+# Python and Jupyter runtime files
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Local environments and editor files
+.venv/
+.idea/
+.vscode/
+
+# Large artifacts distributed through the external archive
+data/raw/
+data/processed/
+models/*.pt
+
+# Local outputs
+predictions.csv
